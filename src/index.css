@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* 1. Roslindale Font */
+@font-face {
+  font-family: "Roslindale Variable Display";
+  src: url("/fonts/Roslindale.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. SF Pro Rounded Font */
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-serif: "Roslindale Variable Display", Georgia, serif;
+  --font-sans: "SF Pro Rounded", system-ui, -apple-system, sans-serif;
+
+  --color-brand-purple: #9333ea;
+  --color-brand-dark: #121212;
+}
