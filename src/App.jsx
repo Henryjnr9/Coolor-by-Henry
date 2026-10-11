@@ -46,7 +46,7 @@ export default function App() {
       <Navbar />
 
       {/* 2. Main Content Container */}
-      <div className="w-full px-6 sm:px-10 lg:px-[80px] flex-1 flex flex-col pt-[110px] sm:pt-[120px] relative z-10">
+      <div className="w-full px-6 sm:px-10 lg:px-[80px] flex-1 flex flex-col pt-[110px] sm:pt-[180px] relative z-10">
         <main className="flex-1 flex flex-col gap-6 lg:gap-10">
           <Hero />
           <Intro />
