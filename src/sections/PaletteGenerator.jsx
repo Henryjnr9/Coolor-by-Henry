@@ -163,7 +163,7 @@ export default function PaletteGenerator() {
   return (
     <section
       id="palette-generator"
-      className="relative w-full min-h-screen flex flex-col justify-center py-12 font-sans select-none"
+      className="relative w-full py-12 font-sans select-none scroll-mt-[130px]"
     >
       {/* 1. Header & Buttons Row Container: 114px from top guide */}
       <div className="pt-12 sm:pt-[81px] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">

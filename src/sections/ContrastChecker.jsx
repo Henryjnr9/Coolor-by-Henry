@@ -81,7 +81,7 @@ export default function ContrastChecker() {
   return (
     <section
       id="contrast-checker"
-      className="relative w-full min-h-screen flex flex-col justify-center py-12 font-sans select-none"
+      className="relative w-full py-12 font-sans select-none scroll-mt-[130px]"
     >
       {/* 1. Header & Chrome Button Row Container */}
       <div className="pt-[43px] flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8">

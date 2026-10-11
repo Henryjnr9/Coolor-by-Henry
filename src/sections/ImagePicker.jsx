@@ -197,7 +197,7 @@ export default function ImagePicker() {
   return (
     <section
       id="image-picker"
-      className="relative w-full font-sans select-none"
+      className="relative w-full font-sans select-none scroll-mt-[130px]"
     >
       {/* Hidden File Input */}
       <input

@@ -41,13 +41,12 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans selection:bg-[#9333EA] selection:text-white overflow-x-hidden">
-      {/* 1. Purple Rectangle at the top */}
-      <div className="w-full h-[22px] bg-[#520066] shrink-0 relative z-20" />
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col font-sans selection:bg-[#9333EA] selection:text-white overflow-x-hidden relative">
+      {/* 1. Fixed Navbar */}
+      <Navbar />
 
-      {/* 2. Global Content Container with 80px margins */}
-      <div className="w-full px-6 sm:px-10 lg:px-[80px] flex-1 flex flex-col">
-        <Navbar />
+      {/* 2. Main Content Container */}
+      <div className="w-full px-6 sm:px-10 lg:px-[80px] flex-1 flex flex-col pt-[110px] sm:pt-[120px] relative z-10">
         <main className="flex-1 flex flex-col gap-6 lg:gap-10">
           <Hero />
           <Intro />
@@ -59,7 +58,7 @@ export default function App() {
         </main>
       </div>
 
-      {/* 3. Edge-to-edge Footer */}
+      {/* 3. Footer with Watermark */}
       <Footer />
     </div>
   );

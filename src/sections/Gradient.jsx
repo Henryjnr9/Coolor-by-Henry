@@ -58,7 +58,10 @@ export default function Gradient() {
   };
 
   return (
-    <section id="gradient" className="relative w-full font-sans select-none">
+    <section
+      id="gradient"
+      className="relative w-full font-sans select-none scroll-mt-[130px]"
+    >
       {/* 1. Header Row: Title & "Get Started" Pill */}
       <div className="pt-[43px] flex items-center gap-[16px]">
         {/* Title: 64px, 700 weight, 95px line-height */}

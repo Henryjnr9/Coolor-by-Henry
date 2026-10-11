@@ -159,7 +159,7 @@ export default function Intro() {
   return (
     <section
       id="explore"
-      className="w-full pt-8 pb-24 font-sans select-none overflow-hidden"
+      className="relative w-full pt-8 pb-24 font-sans select-none scroll-mt-[130px]"
     >
       {/* Scoped CSS animation for continuous infinite horizontal scroll */}
       <style>{`
