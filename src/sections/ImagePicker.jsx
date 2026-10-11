@@ -3,7 +3,6 @@ import { Check, ImagePlus, RefreshCw, Upload } from "lucide-react";
 
 const VARIATION_MODES = ["Deep", "Muted", "Bright", "Colourful"];
 
-// Helper to determine text contrast (black on light colors, white on dark)
 function isLightColor(hex) {
   let c = hex.replace("#", "");
   if (c.length === 3)
@@ -18,7 +17,6 @@ function isLightColor(hex) {
   return (r * 299 + g * 587 + b * 114) / 1000 > 155;
 }
 
-// Color conversion helpers to generate live variations (Deep, Muted, Bright, Colourful)
 function hexToHsl(hex) {
   let c = hex.replace("#", "");
   if (c.length === 3)
@@ -86,7 +84,6 @@ function hslToHex(h, s, l) {
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
 
-// Transform palette based on selected variation mode
 function applyVariation(colors, mode) {
   return colors.map((col) => {
     const [h, s, l] = hexToHsl(col.rawHex || col.hex);
@@ -116,13 +113,12 @@ export default function ImagePicker() {
   const [imageSrc, setImageSrc] = useState(null);
   const [baseColors, setBaseColors] = useState([]);
   const [activeVariation, setActiveVariation] = useState("Colourful");
-  const [hoveredIndex, setHoveredIndex] = useState(0); // Expanded index (default 0)
+  const [hoveredIndex, setHoveredIndex] = useState(0);
   const [copiedHex, setCopiedHex] = useState(null);
   const fileInputRef = useRef(null);
 
   const displayedPalette = applyVariation(baseColors, activeVariation);
 
-  // Client-side HTML5 Canvas pixel extraction from uploaded photo
   const extractColors = (src, randomize = false) => {
     const img = new Image();
     img.crossOrigin = "Anonymous";
@@ -199,7 +195,6 @@ export default function ImagePicker() {
       id="image-picker"
       className="relative w-full font-sans select-none scroll-mt-[130px]"
     >
-      {/* Hidden File Input */}
       <input
         type="file"
         ref={fileInputRef}
@@ -208,9 +203,8 @@ export default function ImagePicker() {
         className="hidden"
       />
 
-      {/* 1. Header Row: Title & Colour States (Deep, Muted, Bright, Colourful) */}
-      <div className="pt-[43px] flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
-        {/* Left: Title + "Get Started" Pill */}
+      {/* 1. Header Row */}
+      <div className="pt-[43px] flex items-center gap-[16px]">
         <div className="relative">
           <div className="flex items-center gap-[16px]">
             <h2 className="relative z-10 font-serif font-bold text-4xl sm:text-5xl lg:text-[64px] lg:leading-[95px] text-black tracking-normal">
@@ -221,7 +215,6 @@ export default function ImagePicker() {
             </span>
           </div>
 
-          {/* Broken line directly under the header along its baseline */}
           <div className="absolute bottom-2 lg:bottom-[20px] left-0 right-0 w-full pointer-events-none z-0">
             <svg
               width="100%"
@@ -243,43 +236,22 @@ export default function ImagePicker() {
             </svg>
           </div>
         </div>
-
-        {/* Right: Colour States Buttons */}
-        <div className="flex items-center gap-[14px] flex-wrap">
-          {VARIATION_MODES.map((mode) => {
-            const isActive = activeVariation === mode;
-            return (
-              <button
-                key={mode}
-                onClick={() => setActiveVariation(mode)}
-                className={`flex items-center justify-center px-[24px] py-[10px] gap-[10px] rounded-[18px] border border-[#D9D9D9] font-sans text-[14px] font-medium leading-normal transition-all duration-200 cursor-pointer ${
-                  isActive
-                    ? "bg-[#111] text-white border-[#111] shadow-xs"
-                    : "bg-white text-black hover:border-black"
-                }`}
-              >
-                {mode}
-              </button>
-            );
-          })}
-        </div>
       </div>
 
-      {/* 2. Subtext: 16px below title, 24px font */}
+      {/* 2. Subtext */}
       <div className="mt-[16px] max-w-[620px]">
         <p className="text-black font-sans text-lg sm:text-[24px] font-normal leading-normal">
           Generate color schemes from your images and use them in your designs.
         </p>
       </div>
 
-      {/* 3. Cards Section: 89px below subtext, fluid across 80px side margins, gap: 24px */}
+      {/* 3. Cards Section: Right Card takes LARGER share (flex-1), Left Card is smaller (420px) */}
       <div className="mt-[89px] w-full flex flex-col lg:flex-row items-stretch gap-[24px]">
-        {/* LEFT CARD: Expands horizontally (flex: 1 0 0) to fill remaining space */}
-        <div className="flex-1 w-full min-h-[482px] lg:h-[482px] rounded-[16px] bg-white border border-neutral-200/70 p-6 sm:p-8 lg:px-[40px] lg:py-[32px] flex items-center justify-center shadow-xs">
+        {/* LEFT CARD (Smaller share: width 420px on desktop) */}
+        <div className="w-full lg:w-[420px] shrink-0 min-h-[500px] lg:h-[560px] rounded-[16px] bg-white border border-neutral-200/70 p-6 sm:p-8 lg:p-[32px] flex items-center justify-center shadow-xs">
           {imageUploaded && imageSrc ? (
-            /* Image Added State: Displays uploaded image */
             <div className="w-full h-full flex flex-col items-center justify-center relative group">
-              <div className="w-full h-full min-h-[380px] rounded-[16px] overflow-hidden relative">
+              <div className="w-full h-full min-h-[420px] rounded-[16px] overflow-hidden relative">
                 <img
                   src={imageSrc}
                   alt="Uploaded source"
@@ -287,7 +259,6 @@ export default function ImagePicker() {
                 />
               </div>
 
-              {/* Click to change image */}
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
@@ -297,10 +268,9 @@ export default function ImagePicker() {
               </button>
             </div>
           ) : (
-            /* Empty State: Upload Dropzone */
             <div
               onClick={() => fileInputRef.current?.click()}
-              className="w-full h-full min-h-[380px] sm:min-h-[418px] rounded-[16px] border border-dashed border-[#9300B8] bg-[rgba(147,0,184,0.10)] p-[24px] flex flex-col justify-center items-center gap-[28px] cursor-pointer hover:bg-[rgba(147,0,184,0.15)] transition-colors group"
+              className="w-full h-full min-h-[420px] rounded-[16px] border border-dashed border-[#9300B8] bg-[rgba(147,0,184,0.10)] p-[24px] flex flex-col justify-center items-center gap-[28px] cursor-pointer hover:bg-[rgba(147,0,184,0.15)] transition-colors group"
             >
               <span className="text-center text-[#9300B8] font-sans text-[16px] font-medium leading-normal">
                 Upload Image
@@ -313,19 +283,18 @@ export default function ImagePicker() {
           )}
         </div>
 
-        {/* RIGHT CARD: Exact 478px width, 482px height, padding 32px 40px, rounded 16px, bg #FFF */}
-        <div className="w-full lg:w-[478px] shrink-0 min-h-[482px] lg:h-[482px] rounded-[16px] bg-white border border-neutral-200/70 p-6 sm:p-8 lg:px-[40px] lg:py-[32px] flex flex-col justify-between shadow-xs">
+        {/* RIGHT CARD: PALETTE (LARGER share: flex-1 takes all remaining space) */}
+        <div className="flex-1 w-full min-h-[500px] lg:h-[560px] rounded-[16px] bg-white border border-neutral-200/70 p-6 sm:p-8 lg:px-[40px] lg:py-[32px] flex flex-col justify-between shadow-xs">
           {imageUploaded ? (
-            /* Active Extracted Palette State with Palette Generator UI Interaction */
             <div className="w-full h-full flex flex-col justify-between">
-              {/* Top: "Palette" label (32px padding from card top, 16px to swatches) */}
-              <div className="mb-[16px]">
+              {/* Top: "Palette" label */}
+              <div className="mb-[14px]">
                 <span className="text-black font-sans text-[16px] font-medium leading-normal">
                   Palette
                 </span>
               </div>
 
-              {/* 5-Color Swatches Block (268px height, rounded 16px, hover expansion identical to Palette Generator) */}
+              {/* Swatches Block: Wide, spacious 268px height */}
               <div className="w-full h-[268px] rounded-[16px] overflow-hidden flex items-stretch shadow-2xs relative">
                 {displayedPalette.map((color, idx) => {
                   const isExpanded = hoveredIndex === idx;
@@ -343,7 +312,6 @@ export default function ImagePicker() {
                       onClick={() => handleCopyHex(color.hex)}
                       className="self-stretch h-full transition-all duration-500 ease-out flex flex-col justify-end p-3 sm:p-4 relative cursor-pointer select-none overflow-hidden min-w-0"
                     >
-                      {/* Copied Hex notification */}
                       {copiedHex === color.hex && (
                         <div className="absolute inset-0 bg-black/30 backdrop-blur-xs flex items-center justify-center z-30">
                           <div className="bg-white text-black px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-md">
@@ -353,10 +321,8 @@ export default function ImagePicker() {
                         </div>
                       )}
 
-                      {/* Expanded State: Translucent pill with large HEX + Color Name below */}
                       {isExpanded && (
                         <div className="w-full flex flex-col items-center justify-center mb-3 transition-all duration-500 min-w-0">
-                          {/* Translucent HEX Container */}
                           <div
                             style={{ color: textColor }}
                             className="flex items-center justify-center px-3 py-1.5 gap-1.5 rounded-xl bg-black/20 backdrop-blur-xs"
@@ -366,7 +332,6 @@ export default function ImagePicker() {
                             </span>
                           </div>
 
-                          {/* Color Name */}
                           <span
                             style={{ color: textColor }}
                             className="font-sans text-[11px] font-medium leading-normal mt-1 opacity-90 truncate"
@@ -376,7 +341,6 @@ export default function ImagePicker() {
                         </div>
                       )}
 
-                      {/* Collapsed State: Minimal indicator at bottom */}
                       {!isExpanded && (
                         <div
                           style={{ color: textColor }}
@@ -390,20 +354,41 @@ export default function ImagePicker() {
                 })}
               </div>
 
-              {/* Bottom: Regenerate Palette Button (19px below swatches, 32px to card bottom) */}
-              <div className="mt-[19px]">
-                <button
-                  type="button"
-                  onClick={handleRegenerate}
-                  className="inline-flex items-center justify-center px-[18px] py-[6px] gap-[10px] rounded-full bg-[rgba(147,0,184,0.10)] hover:bg-[rgba(147,0,184,0.18)] text-[#9300B8] font-sans text-[16px] font-medium leading-normal transition-colors cursor-pointer"
-                >
-                  <RefreshCw size={14} />
-                  <span>Regenerate Palette</span>
-                </button>
+              {/* Bottom: Regenerate Palette + Variation Pills aligned on the wider stage */}
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <button
+                    type="button"
+                    onClick={handleRegenerate}
+                    className="inline-flex items-center justify-center px-[18px] py-[6px] gap-[10px] rounded-full bg-[rgba(147,0,184,0.10)] hover:bg-[rgba(147,0,184,0.18)] text-[#9300B8] font-sans text-[15px] font-medium leading-normal transition-colors cursor-pointer"
+                  >
+                    <RefreshCw size={14} />
+                    <span>Regenerate Palette</span>
+                  </button>
+                </div>
+
+                <div className="flex items-center gap-2 flex-wrap">
+                  {VARIATION_MODES.map((mode) => {
+                    const isActive = activeVariation === mode;
+                    return (
+                      <button
+                        key={mode}
+                        type="button"
+                        onClick={() => setActiveVariation(mode)}
+                        className={`flex items-center justify-center px-3.5 py-1.5 rounded-[14px] border border-[#D9D9D9] font-sans text-[13px] font-medium leading-normal transition-all duration-200 cursor-pointer ${
+                          isActive
+                            ? "bg-[#111] text-white border-[#111] shadow-xs"
+                            : "bg-white text-black hover:border-black"
+                        }`}
+                      >
+                        {mode}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           ) : (
-            /* Empty State waiting for image */
             <div className="w-full h-full flex flex-col justify-center items-center text-center p-6 gap-3">
               <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-400">
                 <Upload size={22} />
@@ -416,7 +401,7 @@ export default function ImagePicker() {
         </div>
       </div>
 
-      {/* 4. Bottom Broken Line: exactly 105px below the cards */}
+      {/* 4. Bottom Broken Line */}
       <div className="mt-[105px] w-full pointer-events-none">
         <svg
           width="100%"

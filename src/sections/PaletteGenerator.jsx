@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
-// Rich Curated Designer Palettes Library
 const PALETTE_COLLECTIONS = {
   Retro: [
     [
@@ -30,7 +29,7 @@ const PALETTE_COLLECTIONS = {
       { hex: "#8D99AE", name: "Cool Slate" },
       { hex: "#EDF2F4", name: "Anti-Flash White" },
       { hex: "#EF233C", name: "Imperial Red" },
-      { hex: "#D90429", name: "Vivid Ruby" },
+      { hex: "#D9D9D9", name: "Silver Mist" },
     ],
   ],
   Neon: [
@@ -106,7 +105,6 @@ const PALETTE_COLLECTIONS = {
 
 const CATEGORIES = ["Neon", "Retro", "Vintage", "Pastel"];
 
-// Helper to determine text contrast
 function isLightColor(hex) {
   let clean = hex.replace("#", "");
   if (clean.length === 3)
@@ -124,7 +122,7 @@ function isLightColor(hex) {
 export default function PaletteGenerator() {
   const [activeCategory, setActiveCategory] = useState("Retro");
   const [paletteIndex, setPaletteIndex] = useState(0);
-  const [hoveredIndex, setHoveredIndex] = useState(0); // 0 (Navy) is expanded by default
+  const [hoveredIndex, setHoveredIndex] = useState(0);
   const [copiedHex, setCopiedHex] = useState(null);
 
   const categoryPalettes =
@@ -132,16 +130,13 @@ export default function PaletteGenerator() {
   const currentPalette =
     categoryPalettes[paletteIndex % categoryPalettes.length];
 
-  // Function to roll a fresh palette
   const generateNewPalette = useCallback(() => {
     setPaletteIndex((prev) => prev + 1);
     setHoveredIndex(0);
   }, []);
 
-  // Listen to keyboard spacebar to generate new palette like Coolors
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Ignore if user is typing in an input
       if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")
         return;
       if (e.code === "Space") {
@@ -165,15 +160,13 @@ export default function PaletteGenerator() {
       id="palette-generator"
       className="relative w-full py-12 font-sans select-none scroll-mt-[130px]"
     >
-      {/* 1. Header & Buttons Row Container: 114px from top guide */}
-      <div className="pt-12 sm:pt-[81px] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-        {/* Left: Palette Generator Header with Broken Baseline Guide */}
-        <div className="relative pt-4 sm:pt-[33px] w-full lg:w-auto">
+      {/* 1. Header: Clean Palette Generator Header with Broken Baseline Guide */}
+      <div className="pt-8 sm:pt-[60px]">
+        <div className="relative pt-4 sm:pt-[33px] inline-block">
           <h2 className="relative z-10 font-serif font-bold text-4xl sm:text-5xl lg:text-[64px] leading-tight lg:leading-[95px] text-black tracking-normal">
             Palette Generator
           </h2>
 
-          {/* Broken line directly under the header along its baseline */}
           <div className="absolute bottom-2 lg:bottom-[20px] left-0 right-0 w-full pointer-events-none z-0">
             <svg
               width="100%"
@@ -195,14 +188,44 @@ export default function PaletteGenerator() {
             </svg>
           </div>
         </div>
+      </div>
 
-        {/* Right: Category Buttons Row (padding 10px 24px, gap: 14px, radius: 18px) */}
+      {/* 2. Subtext: 40px below header */}
+      <div className="mt-6 sm:mt-[40px] max-w-[580px]">
+        <p className="text-black font-sans text-lg sm:text-[24px] font-normal leading-normal">
+          Generate striking color schemes instantly with our globally recognized
+          palette tool. Simply click the generate button!
+        </p>
+      </div>
+
+      {/* 3. Action Row: "Start the generator" + Category Pills on the same line */}
+      <div className="mt-6 sm:mt-[30px] flex flex-wrap items-center justify-between gap-6">
+        {/* Left: Start the generator button */}
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={generateNewPalette}
+            className="inline-flex items-center gap-2 text-[#9300B8] hover:text-[#780096] font-sans text-xl sm:text-[24px] font-medium leading-normal transition-all group cursor-pointer active:scale-95 select-none"
+          >
+            <span>Start the generator</span>
+            <ArrowRight
+              size={22}
+              className="group-hover:translate-x-1.5 transition-transform"
+            />
+          </button>
+          <span className="hidden sm:inline-block text-xs font-sans text-neutral-400 font-medium">
+            (or press Spacebar)
+          </span>
+        </div>
+
+        {/* Right: Category Buttons aligned on the exact same row */}
         <div className="flex items-center gap-2 sm:gap-[14px] flex-wrap">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat;
             return (
               <button
                 key={cat}
+                type="button"
                 onClick={() => {
                   setActiveCategory(cat);
                   setPaletteIndex(0);
@@ -219,32 +242,6 @@ export default function PaletteGenerator() {
             );
           })}
         </div>
-      </div>
-
-      {/* 2. Subtext: 40px below header */}
-      <div className="mt-6 sm:mt-[40px] max-w-[580px]">
-        <p className="text-black font-sans text-lg sm:text-[24px] font-normal leading-normal">
-          Generate striking color schemes instantly with our globally recognized
-          palette tool. Simply click the generate button!
-        </p>
-      </div>
-
-      {/* 3. Interactive "Start the generator" Button: generates fresh palettes on click */}
-      <div className="mt-5 sm:mt-[30px] flex items-center gap-3">
-        <button
-          type="button"
-          onClick={generateNewPalette}
-          className="inline-flex items-center gap-2 text-[#9300B8] hover:text-[#780096] font-sans text-xl sm:text-[24px] font-medium leading-normal transition-all group cursor-pointer active:scale-95 select-none"
-        >
-          <span>Start the generator</span>
-          <ArrowRight
-            size={22}
-            className="group-hover:translate-x-1.5 transition-transform"
-          />
-        </button>
-        <span className="hidden sm:inline-block text-xs font-sans text-neutral-400 font-medium">
-          (or press Spacebar)
-        </span>
       </div>
 
       {/* 4. Fully Responsive Palette Sample Card */}
@@ -271,7 +268,6 @@ export default function PaletteGenerator() {
               }}
               className="self-stretch w-full sm:w-auto min-w-0 min-h-0 transition-all duration-500 ease-out flex flex-col justify-center sm:justify-end p-4 sm:p-6 relative cursor-pointer select-none overflow-hidden"
             >
-              {/* Copied Hex notification */}
               {copiedHex === color.hex && (
                 <div className="absolute inset-0 bg-black/25 backdrop-blur-xs flex items-center justify-center z-30">
                   <div className="bg-white text-black px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-md">
@@ -281,7 +277,6 @@ export default function PaletteGenerator() {
                 </div>
               )}
 
-              {/* Watermark in Column 5: "Designed by Henry Osuji 🧑🏾" */}
               {index === currentPalette.length - 1 && (
                 <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium text-black/90 pointer-events-none">
                   <span>Designed by Henry Osuji</span>
@@ -289,10 +284,8 @@ export default function PaletteGenerator() {
                 </div>
               )}
 
-              {/* Expanded State: Hex Container + Color Name */}
               {isExpanded && (
                 <div className="w-full flex flex-col items-center justify-center sm:mb-4 transition-all duration-500 min-w-0">
-                  {/* Hex Container with translucent pill */}
                   <div
                     style={{ color: textColor }}
                     className="flex items-center justify-center px-3 sm:px-4 py-1.5 sm:py-2 gap-2 rounded-xl bg-black/20 backdrop-blur-xs shadow-xs"
@@ -302,7 +295,6 @@ export default function PaletteGenerator() {
                     </span>
                   </div>
 
-                  {/* Color Name: font 12px 500 */}
                   <span
                     style={{ color: textColor }}
                     className="font-sans text-[11px] sm:text-[12px] font-medium leading-normal mt-1 opacity-90 truncate"
@@ -312,7 +304,6 @@ export default function PaletteGenerator() {
                 </div>
               )}
 
-              {/* Non-expanded minimal indicator */}
               {!isExpanded && (
                 <div
                   style={{ color: textColor }}
@@ -326,7 +317,7 @@ export default function PaletteGenerator() {
         })}
       </div>
 
-      {/* 5. Bottom Broken Line: 112px below the palette card */}
+      {/* 5. Bottom Broken Line */}
       <div className="mt-16 sm:mt-[112px] w-full pointer-events-none">
         <svg
           width="100%"
