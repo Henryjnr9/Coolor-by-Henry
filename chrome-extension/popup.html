@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: "SF Pro Rounded";
+        src:
+          local("SF Pro Rounded"),
+          url("public/fonts/SF-Pro-Rounded.otf") format("opentype");
+        font-weight: 100 900;
+        font-style: normal;
+      }
+
+      body {
+        width: 320px;
+        font-family:
+          "SF Pro Rounded",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        margin: 0;
+        padding: 18px;
+        background: #fafafa;
+        color: #0a0a0a;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      /* Exact Website Brand Logo: Half #00E5FF, Half #FF2A6D */
+      .brand-logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0;
+      }
+      .logo-cyan {
+        width: 50%;
+        height: 100%;
+        background: #00e5ff;
+      }
+      .logo-pink {
+        width: 50%;
+        height: 100%;
+        background: #ff2a6d;
+      }
+
+      h1 {
+        font-size: 18px;
+        margin: 0;
+        font-weight: 700;
+        color: #0a0a0a;
+      }
+
+      button {
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 16px;
+        border: 1px solid #d9d9d9;
+        background: #ffffff;
+        font-family: "SF Pro Rounded", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        transition: all 0.2s ease;
+      }
+
+      button.primary {
+        background: #9300b8;
+        color: #ffffff;
+        border: 1px solid #9300b8;
+      }
+
+      button:hover {
+        opacity: 0.92;
+        transform: translateY(-1px);
+      }
+
+      .palette-box {
+        margin-top: 14px;
+        padding: 14px;
+        border-radius: 16px;
+        border: 1px dashed #d9d9d9;
+        background: #ffffff;
+      }
+
+      .swatches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+        max-height: 140px;
+        overflow-y: auto;
+      }
+
+      .swatch {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        transition: transform 0.15s;
+      }
+
+      .swatch:hover {
+        transform: scale(1.15);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="brand-logo">
+        <div class="logo-cyan"></div>
+        <div class="logo-pink"></div>
+      </div>
+      <h1>Coolors by Henry</h1>
+    </div>
+
+    <button id="toggle-inspect" class="primary">
+      Start Contrast Inspector
+    </button>
+
+    <button id="extract-colors">Extract Page Colours</button>
+
+    <div id="palette-container" class="palette-box" style="display: none">
+      <span
+        style="
+          font-size: 12px;
+          font-weight: 600;
+          color: #525252;
+          text-transform: uppercase;
+        "
+      >
+        Extracted Palette (Click to copy)
+      </span>
+      <div id="swatches" class="swatches"></div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

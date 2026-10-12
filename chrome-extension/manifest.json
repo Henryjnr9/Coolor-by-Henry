@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Coolors by Henry - Inspector",
+  "version": "1.0.0",
+  "description": "Inspect text contrast ratios and extract color palettes from any website like WhatFont.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Coolors Inspector"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

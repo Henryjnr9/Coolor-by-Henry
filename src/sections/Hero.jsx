@@ -379,10 +379,9 @@ export default function Hero() {
 
           {/* Install for Chrome */}
           <a
-            href="https://chrome.google.com"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center justify-center px-[28px] py-[14px] gap-[10px] rounded-full bg-[#C0F] hover:bg-[#a800e0] text-white font-sans text-[20px] font-semibold leading-normal tracking-[-0.08px] transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5"
+            href="/chrome-extension.zip"
+            download="coolors-chrome-extension.zip"
+            className="flex items-center justify-center px-[28px] py-[14px] gap-[10px] rounded-full bg-[#C0F] hover:bg-[#a800e0] text-white font-sans text-[20px] font-semibold leading-normal tracking-[-0.08px] transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 cursor-pointer"
           >
             <svg
               width="24"
