@@ -147,7 +147,7 @@ export default function ContrastChecker() {
         <div className="mb-4 lg:mb-0">
           <a
             href="/chrome-extension.zip"
-            download="Huewises-chrome-extension.zip"
+            download="Chromastines-chrome-extension.zip"
             className="inline-flex items-center justify-center px-[28px] py-[20px] gap-[10px] rounded-[36px] bg-[#1A73E8] hover:bg-[#1557b0] text-white font-sans text-[20px] sm:text-[24px] font-normal leading-normal transition-all shadow-sm hover:shadow hover:-translate-y-0.5 cursor-pointer shrink-0"
           >
             {/* Official Chrome Logo SVG */}

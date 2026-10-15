@@ -9,10 +9,10 @@ export default function Footer() {
 
   return (
     <footer className="w-full relative font-sans overflow-hidden">
-      {/* 1. Large "Huewise" Watermark: 225.34px, 900 weight, #EDEDED */}
+      {/* 1. Large "Chromastine" Watermark: 225.34px, 900 weight, #EDEDED */}
       <div className="w-full overflow-hidden flex justify-center pt-8 pb-4 select-none pointer-events-none">
         <span className="text-[#EDEDED] font-sans font-black text-[80px] sm:text-[140px] lg:text-[225.34px] leading-none whitespace-nowrap">
-          Huewise
+          Chromastine
         </span>
       </div>
 
@@ -39,7 +39,7 @@ export default function Footer() {
             {/* Column 5: Copyright mark */}
             {index === 4 && (
               <div className="absolute bottom-6 right-6 text-white text-xs sm:text-sm font-medium whitespace-nowrap opacity-90">
-                Huewise 2026
+                Chromastine 2026
               </div>
             )}
           </div>

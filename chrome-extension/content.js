@@ -1,7 +1,7 @@
 (function () {
   // Prevent duplicate script execution
-  if (window.__HuewisesInspectorInitialized) return;
-  window.__HuewisesInspectorInitialized = true;
+  if (window.__ChromastinesInspectorInitialized) return;
+  window.__ChromastinesInspectorInitialized = true;
 
   let isInspectActive = false;
   let tooltip = null;
@@ -46,7 +46,7 @@
   function createTooltip() {
     if (tooltip) return;
     tooltip = document.createElement("div");
-    tooltip.id = "Huewises-inspector-tooltip";
+    tooltip.id = "Chromastines-inspector-tooltip";
     tooltip.style.cssText = `
       position: fixed;
       z-index: 2147483647;
@@ -71,7 +71,7 @@
     if (!tooltip) createTooltip();
 
     const el = document.elementFromPoint(e.clientX, e.clientY);
-    if (!el || el.id === "Huewises-inspector-tooltip") return;
+    if (!el || el.id === "Chromastines-inspector-tooltip") return;
 
     const style = window.getComputedStyle(el);
     const textColorRgb = parseRgb(style.color);
