@@ -278,10 +278,8 @@ export default function Intro() {
           {/* Left: Value Proposition Text (28px font size, 33.6px line height) */}
           <div className="flex-1 max-w-[680px]">
             <p className="font-sans text-[28px] font-medium leading-[33.6px] tracking-normal text-[#0A0A0A]">
-              <span className="text-[#F9429E] font-semibold">
-                Coolors by Henry
-              </span>{" "}
-              is the premier color palette generator for creatives of all kinds.
+              <span className="text-[#F9429E] font-semibold">Huewise</span> is
+              the premier color palette generator for creatives of all kinds.
               Generate stunning palettes on the fly, explore trending options,
               and extract colors from your favorite images. Ensure
               accessibility, preview on designs, and organize/export

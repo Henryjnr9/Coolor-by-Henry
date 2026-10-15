@@ -14,7 +14,7 @@ export default function SimplifyCTA() {
         @keyframes flowDashes {
           to { stroke-dashoffset: -24; }
         }
-        .animate-float-coolors {
+        .animate-float-Huewises {
           animation: subtleFloatA 4s ease-in-out infinite;
         }
         .animate-float-figma {
@@ -37,8 +37,8 @@ export default function SimplifyCTA() {
 
       {/* 3. Logo to Figma Container: exactly 88px below subtext, width: 470px */}
       <div className="mt-[88px] w-full max-w-[470px] mx-auto flex items-center justify-between">
-        {/* Coolors App Icon: width 127px, height 127px, gentle float */}
-        <div className="animate-float-coolors shrink-0 w-[127px] h-[127px] rounded-[38px] overflow-hidden flex shadow-sm border border-black/5 hover:scale-105 transition-transform duration-300">
+        {/* Huewises App Icon: width 127px, height 127px, gentle float */}
+        <div className="animate-float-Huewises shrink-0 w-[127px] h-[127px] rounded-[38px] overflow-hidden flex shadow-sm border border-black/5 hover:scale-105 transition-transform duration-300">
           <div className="w-1/3 h-full bg-[#C0F]"></div>
           <div className="w-1/3 h-full bg-[#00F5D4]"></div>
           <div className="w-1/3 h-full bg-[#FF2A00]"></div>

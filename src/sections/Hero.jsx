@@ -380,7 +380,7 @@ export default function Hero() {
           {/* Install for Chrome */}
           <a
             href="/chrome-extension.zip"
-            download="coolors-chrome-extension.zip"
+            download="Huewises-chrome-extension.zip"
             className="flex items-center justify-center px-[28px] py-[14px] gap-[10px] rounded-full bg-[#C0F] hover:bg-[#a800e0] text-white font-sans text-[20px] font-semibold leading-normal tracking-[-0.08px] transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 cursor-pointer"
           >
             <svg
@@ -418,7 +418,7 @@ export default function Hero() {
               <div className="w-3.5 h-3.5 rounded-full bg-[#27C93F]" />
             </div>
             <span className="text-neutral-400 text-xs font-medium">
-              Coolor by Henry
+              Huewise
             </span>
             <div className="w-12" />
           </div>
